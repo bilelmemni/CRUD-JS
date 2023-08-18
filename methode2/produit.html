@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Produit </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <!--Les Icones Bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta charset="utf-8">    
+  </head>
+  <body onload="affichage()">
+    <!--Le bouton Ajouter:-->
+    <div class=" my-2">
+      <button type="button" class="btn btn-success col-12" data-bs-toggle="modal" data-bs-target="#Produit" id="Add"> <i class="bi bi-plus-circle"></i> Ajouter Produit</button>
+    </div> 
+    <!--Modal Ajouter un nouvel employé-->
+    <div class="modal fade" id="Produit" tabindex="-1" aria-labelledby="produit" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Ajouter un Produit</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form  >
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="Nom" placeholder="Product Name ... ">
+                  <label for="Nom" class="form-label">Nom :</label>
+                    <div  class="invalid-feedback ">
+                      Please enter the name of the product.
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <textarea class="form-control " id="Description"  placeholder="Product Description ..." rows="2" ></textarea>
+                  <label for="Description" class="form-label">Description :</label>
+                  <div  class="invalid-feedback ">
+                    Please enter the Description. 
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="Price" placeholder="Product Price ..." >
+                  <label for="Price" class="form-label">Price :</label>
+                  <div class="invalid-feedback">
+                    Please enter the price.
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="Quantité" placeholder="Product Quantité ... ">
+                  <label for="Quantité" class="form-label">Quantité :</label>
+                  <div  class="invalid-feedback ">
+                    Please enter the quantity. 
+                  </div>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+            <button type="button" class="btn btn-success" onclick="save(event)">Sauvegarder</button>
+          </div>
+        </div>  
+      </div>
+    </div>
+
+
+    <!--Le tableau d'affichage-->
+    <table class="table table-responsive container-fluid">
+      <thead style="background-color: rgb(4, 30, 53); color: white;">
+      <tr class="text-center">
+        <td>#</td>
+        <td>Nom</td>
+        <td>Description</td>
+        <td>Prix</td>
+        <td>Quantité</td>
+        <td> </td>
+        <td> </td>
+      </tr>
+      </thead>
+      <tbody id="post" class="text-center">
+      </tbody>
+  </table>
+
+  <!--Modal Update-->
+  <div class="modal fade" id="UpdateProduit" tabindex="-1" aria-labelledby="Updateproduit" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Modifier ce Produit</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  >
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="UpdateNom" placeholder="Product Name ... ">
+                <label for="UpdateNom" class="form-label">Nom :</label>
+                  <div  class="invalid-feedback ">
+                    Please enter the name of the product.
+                  </div>
+              </div>
+              <div class="form-floating mb-3">
+                <textarea class="form-control " id="UpdateDescription"  placeholder="Product Description ..." rows="2" ></textarea>
+                <label for="UpdateDescription" class="form-label">Description :</label>
+                <div  class="invalid-feedback ">
+                  Please enter the Description. 
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="UpdatePrice" placeholder="Product Price ..." >
+                <label for="UpdatePrice" class="form-label">Price :</label>
+                <div class="invalid-feedback">
+                  Please enter the price.
+                </div>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="UpdateQuantité" placeholder="Product Quantité ... ">
+                <label for="UpdateQuantité" class="form-label">Quantité :</label>
+                <div  class="invalid-feedback ">
+                  Please enter the quantity. 
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-success" onclick="SaveUpdate()">Sauvegarder</button>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+
+  <script src="produit.js"></script>
+  </script>
+    
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" > </script>
+    <script>
+    $(function () {
+      $("#UpdateProduit").on("shown.bs.modal", function (e) {
+        var my_cs_value = $(e.relatedTarget).data('id');
+        update(my_cs_value);
+      });
+    });</script>
+  </body>
+</html>
